@@ -1,7 +1,7 @@
 use glib::clone;
 use gtk4::prelude::*;
 use gtk4::{
-    glib, Application, ApplicationWindow, Box, Button, DropDown, Entry, Orientation, TextView,
+    glib, Application, ApplicationWindow, Box, Button, Entry, Orientation, ScrolledWindow, TextView,
 };
 use std::process::Command;
 
@@ -17,45 +17,26 @@ fn main() -> glib::ExitCode {
 }
 
 fn build_ui(app: &Application) {
-    let tv_expr = TextView::builder()
-        .margin_top(12)
-        .margin_bottom(12)
-        .margin_start(12)
-        .margin_end(12)
-        .hexpand(true)
-        .vexpand(true)
-        .build();
+    let tv_expr = TextView::builder().hexpand(true).vexpand(true).build();
+    let sc_expr = ScrolledWindow::builder().child(&tv_expr).build();
     // TODO: history
     // let dd_expr = DropDown::default();
     let tv_ans = TextView::builder()
-        .margin_top(12)
-        .margin_bottom(12)
-        .margin_start(12)
-        .margin_end(12)
         .hexpand(true)
+        .editable(false)
         .vexpand(true)
         .build();
+    let sc_ans = ScrolledWindow::builder().child(&tv_ans).build();
 
-    let btn_calc = Button::builder()
-        .label("Calculate")
-        .margin_top(12)
-        .margin_bottom(12)
-        .margin_start(12)
-        .margin_end(12)
-        .build();
+    let btn_calc = Button::builder().label("Calculate").build();
     btn_calc.set_tooltip_text(Some("Calculate the Selection or Complete"));
 
-    let btn_units = Button::builder()
-        .label("Units")
-        .margin_top(12)
-        .margin_bottom(12)
-        .margin_start(12)
-        .margin_end(12)
-        .build();
+    let btn_units = Button::builder().label("Units").build();
     btn_units.set_tooltip_text(Some("Get a List of Compatible Units"));
 
     // let txt_ans = Entry::builder().hexpand(true).build();
     let txt_unit = Entry::builder().hexpand(true).build();
+    txt_unit.set_placeholder_text(Some("Target Unit"));
 
     btn_calc.connect_clicked(clone!(
         #[weak]
@@ -128,12 +109,16 @@ fn build_ui(app: &Application) {
         .orientation(Orientation::Horizontal)
         .spacing(10)
         .build();
-    bb1.append(&tv_expr);
-    bb1.append(&tv_ans);
+    bb1.append(&sc_expr);
+    bb1.append(&sc_ans);
 
     let bb = Box::builder()
         .orientation(Orientation::Vertical)
         .spacing(10)
+        .margin_top(5)
+        .margin_bottom(5)
+        .margin_start(5)
+        .margin_end(5)
         .build();
     bb.append(&bb1);
     bb.append(&bb2);
@@ -143,5 +128,6 @@ fn build_ui(app: &Application) {
         .title("Unit Calc")
         .child(&bb)
         .build();
+    window.set_default_size(450, 220);
     window.present();
 }
