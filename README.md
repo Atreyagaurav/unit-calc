@@ -1,4 +1,4 @@
-# Simple Unit based calculator
+# Simple Unit aware calculator
 
 This program uses gnu `units` program to evaluate expressions and show it.
 

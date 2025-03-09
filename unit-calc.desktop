@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=0.1
+Name=Unit Calculator
+Comment=Calculator with unit support using gnu units
+# Path=
+Exec=unit-calc
+# Icon=
+Terminal=false
+Categories=Utility;Calculator
