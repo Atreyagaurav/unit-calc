@@ -1,5 +1,7 @@
 # Simple Unit aware calculator
 
+![Icon](./icon.svg)
+
 This program uses gnu `units` program to evaluate expressions and show it.
 
 You can calculate expressions, or give a unit you want your results to be.

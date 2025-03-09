@@ -17,6 +17,8 @@ package() {
     cd "$srcdir"
     mkdir -p "$pkgdir/usr/bin"
     mkdir -p "$pkgdir/usr/share/applications"
+    mkdir -p "$pkgdir/usr/share/unit-calc"
     cp "../target/release/${pkgname}" "$pkgdir/usr/bin/${pkgname}"
+    cp "../icon.svg" "$pkgdir/usr/share/unit-calc/icon.svg"
     cp "../${pkgname}.desktop" "$pkgdir/usr/share/applications/${pkgname}.desktop"
 }

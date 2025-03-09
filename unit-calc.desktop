@@ -5,6 +5,6 @@ Name=Unit Calculator
 Comment=Calculator with unit support using gnu units
 # Path=
 Exec=unit-calc
-# Icon=
+Icon=/usr/share/unit-calc/icon.svg
 Terminal=false
 Categories=Utility;Calculator
